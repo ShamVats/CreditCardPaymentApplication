@@ -57,7 +57,7 @@ public class TransactionEntity {
 		this.transactionId=transactionId;
 		this.status = status;
 		this.transactionDate = LocalDate.now();
-		this.transactionTime = LocalTime.now();
+		this.transactionTime = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute(), LocalTime.now().getSecond());
 		this.creditCard = creditCard;
 		this.amount = amount;
 		this.description = description;

@@ -55,8 +55,8 @@ class TransactionServiceTest {
 		Mockito.when(transactionRepo.findAll()).thenReturn(testData);
 		
 		List<TransactionModel> expected=Arrays.asList(new TransactionModel[] {
-				new TransactionModel(1L,creditCard1.getCardNumber(),6000.0,LocalDate.now(),LocalTime.now(), TransactionStatus.SUCCESSFUL,"buied"),
-				new TransactionModel(2L,creditCard1.getCardNumber(),3000.0,LocalDate.now(),LocalTime.now(),TransactionStatus.SUCCESSFUL,"sendToFriend")
+				new TransactionModel(1L,creditCard1.getCardNumber(),6000.0,LocalDate.now(),LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute(), LocalTime.now().getSecond()), TransactionStatus.SUCCESSFUL,"buied"),
+				new TransactionModel(2L,creditCard1.getCardNumber(),3000.0,LocalDate.now(),LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute(), LocalTime.now().getSecond()),TransactionStatus.SUCCESSFUL,"sendToFriend")
 		});
 		
 		List<TransactionModel> actual = service.findAll();
@@ -72,7 +72,7 @@ class TransactionServiceTest {
 		
 		TransactionEntity testdata=new TransactionEntity(1L,TransactionStatus.SUCCESSFUL,creditCard1,6000.0,"buied");
 		
-		TransactionModel expected=new TransactionModel(1L,creditCard1.getCardNumber(),6000.0,LocalDate.now(),LocalTime.now(),TransactionStatus.SUCCESSFUL,"buied");
+		TransactionModel expected=new TransactionModel(1L,creditCard1.getCardNumber(),6000.0,LocalDate.now(),LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute(), LocalTime.now().getSecond()),TransactionStatus.SUCCESSFUL,"buied");
 		
 		
 		Mockito.when(transactionRepo.findById(testdata.getTransactionId())).thenReturn(Optional.of(testdata));
